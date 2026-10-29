@@ -54,28 +54,28 @@ Because the array is sorted, pointer movement becomes predictable and efficient.
 ```mermaid
 flowchart TD
     A([Start]) --> B[Sort the array]
-    B --> C[Initialize closest_sum with first valid triplet]
-    C --> D[i = 0]
-    D --> E{i < n - 2?}
+    B --> C[Set closest_sum to first valid triplet]
+    C --> D[Set i = 0]
+    D --> E{Is i < n - 2?}
     E -- No --> Z[Return closest_sum]
-    E -- Yes --> F[left = i + 1, right = n - 1]
-    F --> G{left < right?}
-    G -- No --> H[i = i + 1]
+    E -- Yes --> F[Set left and right]
+    F --> G{Is left < right?}
+    G -- No --> H[Increase i]
     H --> E
-    G -- Yes --> I[current_sum = nums[i] + nums[left] + nums[right]]
-    I --> J{Is current_sum closer to target?}
+    G -- Yes --> I[Compute triplet sum]
+    I --> J{Is it closer than best?}
     J -- Yes --> K[Update closest_sum]
-    J -- No --> L{current_sum == target?}
+    J -- No --> L{Is sum equal to target?}
     K --> L
-    L -- Yes --> M[Return current_sum]
-    L -- No --> N{current_sum < target?}
-    N -- Yes --> O[left = left + 1]
-    N -- No --> P[right = right - 1]
+    L -- Yes --> M[Return current sum]
+    L -- No --> N{Is sum < target?}
+    N -- Yes --> O[Move left right]
+    N -- No --> P[Move right left]
     O --> G
     P --> G
 ```
 
-This flowchart shows the complete decision process: fix an element, scan with two pointers, update the best answer, and move the pointer in the correct direction.
+This flowchart shows the complete decision process: fix one element, scan with two pointers, update the best answer, and move the pointer in the correct direction.
 
 ---
 
