@@ -1,4 +1,5 @@
 <h2>Time Taken : 19:59 mins</h2>
+
 # 3Sum Closest — Study Notes
 
 ## 1. Problem Statement
@@ -48,7 +49,37 @@ Because the array is sorted, pointer movement becomes predictable and efficient.
 
 ---
 
-## 4. Algorithm
+## 4. Flowchart
+
+```mermaid
+flowchart TD
+    A([Start]) --> B[Sort the array]
+    B --> C[Initialize closest_sum with first valid triplet]
+    C --> D[i = 0]
+    D --> E{i < n - 2?}
+    E -- No --> Z[Return closest_sum]
+    E -- Yes --> F[left = i + 1, right = n - 1]
+    F --> G{left < right?}
+    G -- No --> H[i = i + 1]
+    H --> E
+    G -- Yes --> I[current_sum = nums[i] + nums[left] + nums[right]]
+    I --> J{Is current_sum closer to target?}
+    J -- Yes --> K[Update closest_sum]
+    J -- No --> L{current_sum == target?}
+    K --> L
+    L -- Yes --> M[Return current_sum]
+    L -- No --> N{current_sum < target?}
+    N -- Yes --> O[left = left + 1]
+    N -- No --> P[right = right - 1]
+    O --> G
+    P --> G
+```
+
+This flowchart shows the complete decision process: fix an element, scan with two pointers, update the best answer, and move the pointer in the correct direction.
+
+---
+
+## 5. Algorithm
 
 1. Sort the array.
 2. Initialize `closest_sum` with the sum of the first valid triplet.
@@ -60,12 +91,12 @@ Because the array is sorted, pointer movement becomes predictable and efficient.
      - Update `closest_sum` if this sum is closer to the target
      - If `current_sum < target`, increment `left`
      - If `current_sum > target`, decrement `right`
-     - If `current_sum == target`, return `target` immediately
+     - If `current_sum == target`, return `current_sum` immediately
 4. Return `closest_sum`
 
 ---
 
-## 5. Pseudocode
+## 6. Pseudocode
 
 ```text
 function threeSumClosest(nums, target):
@@ -95,7 +126,7 @@ function threeSumClosest(nums, target):
 
 ---
 
-## 6. Step-by-Step Example
+## 7. Step-by-Step Example
 
 Input:
 
@@ -132,7 +163,7 @@ Final result:
 
 ---
 
-## 7. Why This Works
+## 8. Why This Works
 
 The key idea is that after sorting, moving the pointers changes the sum in a controlled way:
 
@@ -147,7 +178,7 @@ If an exact match is found, we can stop immediately because no value can be clos
 
 ---
 
-## 8. Time and Space Complexity
+## 9. Time and Space Complexity
 
 | Metric | Complexity |
 |---|---|
@@ -160,7 +191,7 @@ The dominant cost is the nested pointer scan, so overall complexity is `O(n²)`.
 
 ---
 
-## 9. Important Notes / Pitfalls
+## 10. Important Notes / Pitfalls
 
 - Always initialize `closest_sum` with a valid triplet sum, not with `0`.
 - Do not return early for a non-exact match; only return immediately when `current_sum == target`.
@@ -170,7 +201,7 @@ The dominant cost is the nested pointer scan, so overall complexity is `O(n²)`.
 
 ---
 
-## 10. Comparison: 3Sum vs 3Sum Closest
+## 11. Comparison: 3Sum vs 3Sum Closest
 
 | Feature | 3Sum | 3Sum Closest |
 |---|---|---|
@@ -181,13 +212,13 @@ The dominant cost is the nested pointer scan, so overall complexity is `O(n²)`.
 
 ---
 
-## 11. Interview-Friendly Explanation
+## 12. Interview-Friendly Explanation
 
 > I sort the array first so that I can use two pointers efficiently. Then I fix one element and search the remaining part of the array for the pair whose sum is closest to the target. At each step, I compare the current triplet sum with the best answer so far. If the sum is too small, I move the left pointer rightward; if it is too large, I move the right pointer leftward. This gives an overall time complexity of `O(n²)`.
 
 ---
 
-## 12. Memory Trick
+## 13. Memory Trick
 
 > Fix → Point → Sum → Update → Move
 
@@ -199,7 +230,7 @@ The dominant cost is the nested pointer scan, so overall complexity is `O(n²)`.
 
 ---
 
-## 13. Final Summary
+## 14. Final Summary
 
 3Sum Closest is a classic optimized variation of the 3Sum problem. The combination of sorting and two pointers makes it efficient and elegant.
 
@@ -215,7 +246,7 @@ This gives a clean solution with `O(n²)` time complexity and `O(1)` extra space
 
 ---
 
-## 14. Quick Example Output
+## 15. Quick Example Output
 
 ```text
 Input:  nums = [-1, 2, 1, -4], target = 1
