@@ -1,3 +1,4 @@
+<h2>Time Taken : 19:59 mins</h2>
 # 3Sum Closest — Study Notes
 
 ## 1. Problem Statement
